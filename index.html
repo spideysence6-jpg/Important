@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exclusive Offer</title>
+    <title>Exclusive Elite Membership Portal</title>
     <style>
         * {
             margin: 0;
@@ -12,91 +12,202 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            overflow-x: hidden;
         }
         
+        /* Professional Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3c72;
+            letter-spacing: 2px;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav a:hover {
+            color: #1e3c72;
+        }
+        
+        /* Main Container */
         .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        
+        .card {
             background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: slideIn 0.6s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         h1 {
-            color: #333;
+            color: #1e3c72;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+        
+        .step-indicator {
+            text-align: center;
+            color: #999;
             margin-bottom: 30px;
-            font-size: 2em;
+            font-weight: 600;
         }
         
         .options {
             display: flex;
             flex-direction: column;
             gap: 15px;
-            margin-bottom: 20px;
         }
         
         .option-btn {
-            padding: 15px 30px;
+            padding: 20px 30px;
             font-size: 18px;
-            border: none;
+            border: 2px solid #e0e0e0;
             border-radius: 10px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: white;
+            color: #333;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 600;
+            font-weight: 500;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .option-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(30, 60, 114, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .option-btn:hover::before {
+            left: 100%;
         }
         
         .option-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            border-color: #1e3c72;
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(30, 60, 114, 0.2);
         }
         
-        .result {
+        .option-icon {
+            margin-right: 10px;
+            font-size: 22px;
+        }
+        
+        .hidden {
             display: none;
-            margin-top: 30px;
-            padding: 30px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            animation: fadeIn 0.5s ease;
         }
         
-        .result.show {
-            display: block;
+        /* Sarcastic Result Section */
+        .result-section {
+            text-align: center;
+            animation: zoomIn 0.8s ease;
         }
         
-        .sarcastic-text {
-            font-size: 3em;
-            font-weight: bold;
-            color: #764ba2;
-            margin-bottom: 20px;
-            animation: pulse 1.5s infinite;
-        }
-        
-        .subtext {
-            font-size: 1.2em;
-            color: #666;
-            font-style: italic;
-        }
-        
-        @keyframes fadeIn {
+        @keyframes zoomIn {
             from {
                 opacity: 0;
-                transform: scale(0.8);
+                transform: scale(0.5);
             }
             to {
                 opacity: 1;
                 transform: scale(1);
             }
+        }
+        
+        .result-image {
+            width: 100%;
+            max-width: 500px;
+            margin: 30px auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: shake 0.5s ease;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        .sarcastic-text {
+            font-size: 4em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a6f, #c44569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 30px 0;
+            animation: pulse 1.5s infinite;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
         
         @keyframes pulse {
@@ -108,69 +219,744 @@
             }
         }
         
-        .hidden {
-            display: none;
+        .subtext {
+            font-size: 1.3em;
+            color: #666;
+            font-style: italic;
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+        
+        .emoji-rain {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            text-align: center;
+            padding: 60px;
+        }
+        
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #1e3c72;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .card {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .sarcastic-text {
+                font-size: 2.5em;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Professional Header -->
+    <div class="header">
+        <div class="logo">ELITE PORTAL</div>
+        <div class="nav">
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+    
     <div class="container">
-        <div id="questionSection">
-            <h1>🎯 Choose Your Preference</h1>
-            <div class="options">
-                <button class="option-btn" onclick="showNext(1)">Premium Service ✨</button>
-                <button class="option-btn" onclick="showNext(1)">Exclusive Access 🔑</button>
-                <button class="option-btn" onclick="showNext(1)">VIP Experience 👑</button>
-                <button class="option-btn" onclick="showNext(1)">Elite Membership 💎</button>
-                <button class="option-btn" onclick="showNext(1)">Luxury Package 🏆</button>
+        <div class="card">
+            <!-- Step 1 -->
+            <div id="step1">
+                <div class="step-indicator">Step 1 of 4</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 25%;"></div>
+                </div>
+                <h1>🎯 Welcome to Our Exclusive Program</h1>
+                <p class="subtitle">
+                    Join thousands of successful individuals who have transformed their lifestyle. 
+                    Select your area of interest to proceed with your personalized assessment.
+                </p>
+                <div class="options">
+                    <button class="option-btn" onclick="nextStep(2)">
+                        <span class="option-icon">💼</span> Business & Entrepreneurship
+                    </button>
+                    <button class="option-btn" onclick="nextStep(2)">
+                        <span class="option-icon">🏠</span> Luxury Real Estate Investment
+                    </button>
+                    <button class="option-btn" onclick="nextStep(2)">
+                        <span class="option-icon">✈️</span> Premium Travel & Lifestyle
+                    </button>
+                    <button class="option-btn" onclick="nextStep(2)">
+                        <span class="option-icon">📈</span> Wealth Management Services
+                    </button>
+                    <button class="option-btn" onclick="nextStep(2)">
+                        <span class="option-icon">🎓</span> Executive Education Programs
+                    </button>
+                </div>
             </div>
-        </div>
-        
-        <div id="secondQuestion" class="hidden">
-            <h1>💰 Select Your Budget Range</h1>
-            <div class="options">
-                <button class="option-btn" onclick="showNext(2)">₹10,000 - ₹50,000</button>
-                <button class="option-btn" onclick="showNext(2)">₹50,000 - ₹1,00,000</button>
-                <button class="option-btn" onclick="showNext(2)">₹1,00,000 - ₹5,00,000</button>
-                <button class="option-btn" onclick="showNext(2)">₹5,00,000+</button>
-                <button class="option-btn" onclick="showNext(2)">Money is no object 💸</button>
+            
+            <!-- Step 2 -->
+            <div id="step2" class="hidden">
+                <div class="step-indicator">Step 2 of 4</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 50%;"></div>
+                </div>
+                <h1>💰 Investment Capacity Assessment</h1>
+                <p class="subtitle">
+                    To provide you with the most suitable premium options, please indicate your 
+                    investment range. All information is kept strictly confidential.
+                </p>
+                <div class="options">
+                    <button class="option-btn" onclick="nextStep(3)">
+                        <span class="option-icon">💵</span> ₹5 Lakhs - ₹15 Lakhs
+                    </button>
+                    <button class="option-btn" onclick="nextStep(3)">
+                        <span class="option-icon">💴</span> ₹15 Lakhs - ₹50 Lakhs
+                    </button>
+                    <button class="option-btn" onclick="nextStep(3)">
+                        <span class="option-icon">💶</span> ₹50 Lakhs - ₹1 Crore
+                    </button>
+                    <button class="option-btn" onclick="nextStep(3)">
+                        <span class="option-icon">💷</span> ₹1 Crore - ₹5 Crore
+                    </button>
+                    <button class="option-btn" onclick="nextStep(3)">
+                        <span class="option-icon">💎</span> Above ₹5 Crore
+                    </button>
+                </div>
             </div>
-        </div>
-        
-        <div id="thirdQuestion" class="hidden">
-            <h1>⏰ When do you need this?</h1>
-            <div class="options">
-                <button class="option-btn" onclick="showResult()">Immediately</button>
-                <button class="option-btn" onclick="showResult()">Within a week</button>
-                <button class="option-btn" onclick="showResult()">Within a month</button>
-                <button class="option-btn" onclick="showResult()">Flexible timeline</button>
-                <button class="option-btn" onclick="showResult()">Yesterday 😅</button>
+            
+            <!-- Step 3 -->
+            <div id="step3" class="hidden">
+                <div class="step-indicator">Step 3 of 4</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%;"></div>
+                </div>
+                <h1>⏰ Timeline Preferences</h1>
+                <p class="subtitle">
+                    Understanding your timeline helps us create a customized roadmap for your success. 
+                    When would you like to begin your journey?
+                </p>
+                <div class="options">
+                    <button class="option-btn" onclick="nextStep(4)">
+                        <span class="option-icon">🚀</span> Immediate Start (Within 7 days)
+                    </button>
+                    <button class="option-btn" onclick="nextStep(4)">
+                        <span class="option-icon">📅</span> Within This Month
+                    </button>
+                    <button class="option-btn" onclick="nextStep(4)">
+                        <span class="option-icon">📆</span> Next Quarter (3 months)
+                    </button>
+                    <button class="option-btn" onclick="nextStep(4)">
+                        <span class="option-icon">🎯</span> Within 6 Months
+                    </button>
+                    <button class="option-btn" onclick="nextStep(4)">
+                        <span class="option-icon">⏳</span> Flexible Timeline
+                    </button>
+                </div>
             </div>
-        </div>
-        
-        <div id="result" class="result">
-            <div class="sarcastic-text">बड़े लोग 🧐</div>
-            <div class="subtext">
-                Itni choices ke baad yahi milna tha! 😏<br>
-                ! 
+            
+            <!-- Step 4 -->
+            <div id="step4" class="hidden">
+                <div class="step-indicator">Step 4 of 4</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%;"></div>
+                </div>
+                <h1>🎓 Your Background</h1>
+                <p class="subtitle">
+                    Finally, tell us about your professional background to match you with 
+                    like-minded elite members in our exclusive network.
+                </p>
+                <div class="options">
+                    <button class="option-btn" onclick="showLoading()">
+                        <span class="option-icon">👔</span> Corporate Executive / CXO Level
+                    </button>
+                    <button class="option-btn" onclick="showLoading()">
+                        <span class="option-icon">🏢</span> Business Owner / Entrepreneur
+                    </button>
+                    <button class="option-btn" onclick="showLoading()">
+                        <span class="option-icon">🎬</span> Creative Professional / Artist
+                    </button>
+                    <button class="option-btn" onclick="showLoading()">
+                        <span class="option-icon">⚖️</span> Doctor / Lawyer / Consultant
+                    </button>
+                    <button class="option-btn" onclick="showLoading()">
+                        <span class="option-icon">🌟</span> Investor / Financial Advisor
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Loading Screen -->
+            <div id="loading" class="hidden loading">
+                <div class="spinner"></div>
+                <div class="loading-text">Analyzing your profile...</div>
+                <div class="loading-text" style="margin-top: 10px; font-size: 0.9em; color: #999;">
+                    Please wait while we match you with the perfect program
+                </div>
+            </div>
+            
+            <!-- Sarcastic Result -->
+            <div id="result" class="hidden result-section">
+                <img src="https://i.imgflip.com/5uci1i.jpg" 
+                     alt="Bade Log Meme" 
+                     class="result-image"
+                     onerror="this.style.display='none'">
+                
+                <div class="sarcastic-text">बड़े लोग! 🧐</div>
+                
+                <div class="emoji-rain">😏😂🤣💸👑</div>
+                
+                <div class="subtext">
+                    Itni fancy choices ke baad yahi milna tha! 😎<br><br>
+                    <strong>Congratulations!</strong> Aap officially "Bade Log" category mein aa gaye! 🎉<br><br>
+                    Premium ka chakkar, maut se takkar! 😂<br><br>
+                    <em style="font-size: 0.9em; color: #999;">
+                        P.S. - Hope you enjoyed this journey of self-discovery! 
+                        Remember, real "bade log" laugh at themselves too! 😄
+                    </em>
+                </div>
             </div>
         </div>
     </div>
     
     <script>
-        function showNext(step) {
-            if (step === 1) {
-                document.getElementById('questionSection').classList.add('hidden');
-                document.getElementById('secondQuestion').classList.remove('hidden');
-            } else if (step === 2) {
-                document.getElementById('secondQuestion').classList.add('hidden');
-                document.getElementById('thirdQuestion').classList.remove('hidden');
+        function nextStep(step) {
+            // Hide all sections
+            for(let i = 1; i <= 4; i++) {
+                document.getElementById('step' + i).classList.add('hidden');
+            }
+            
+            // Show next step with animation
+            setTimeout(() => {
+                document.getElementById('step' + step).classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 300);
+        }
+        
+        function showLoading() {
+            document.getElementById('step4').classList.add('hidden');
+            
+            setTimeout(() => {
+                document.getElementById('loading').classList.remove('hidden');
+            }, 300);
+            
+            // Show result after 3 seconds
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+                setTimeout(() => {
+                    document.getElementById('result').classList.remove('hidden');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Elite Membership Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Professional Header */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #1e3c72;
+            letter-spacing: 2px;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav a:hover {
+            color: #1e3c72;
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+        
+        .card {
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: slideIn 0.6s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
         
-        function showResult() {
-            document.getElementById('thirdQuestion').classList.add('hidden');
-            document.getElementById('result').classList.add('show');
+        h1 {
+            color: #1e3c72;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+        
+        .step-indicator {
+            text-align: center;
+            color: #999;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .option-btn {
+            padding: 20px 30px;
+            font-size: 18px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .option-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(30, 60, 114, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .option-btn:hover::before {
+            left: 100%;
+        }
+        
+        .option-btn:hover {
+            border-color: #1e3c72;
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(30, 60, 114, 0.2);
+        }
+        
+        .option-icon {
+            margin-right: 10px;
+            font-size: 22px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        /* Sarcastic Result Section */
+        .result-section {
+            text-align: center;
+            animation: zoomIn 0.8s ease;
+        }
+        
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .result-image {
+            width: 100%;
+            max-width: 500px;
+            margin: 30px auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: shake 0.5s ease;
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+        
+        .sarcastic-text {
+            font-size: 4em;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a6f, #c44569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 30px 0;
+            animation: pulse 1.5s infinite;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+        
+        .subtext {
+            font-size: 1.3em;
+            color: #666;
+            font-style: italic;
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+        
+        .emoji-rain {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+        
+        /* Loading Animation */
+        .loading {
+            text-align: center;
+            padding: 60px;
+        }
+        
+        .spinner {
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #1e3c72;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            color: #666;
+            font-size: 1.2em;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .card {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .sarcastic-text {
+                font-size: 2.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Professional Header -->
+    <div class="header">
+        <div class="logo">ELITE PORTAL</div>
+        <div class="nav">
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="card">
+            <!-- Step 1 -->
+            <div id="step1">
+                <div class="step-indicator">Step 1 of 4</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 25%;"></div>
+                </div>
+                <h1>🎯 Welcome to Our Exclusive Program</h1>
+                <p class="subtitle">
+                    Join thousands of successful individuals who have transformed their lifestyle. 
+                    Select your area of interest to proceed with your personalized assessment.
+                </p>
+                <div class="options">
+                    <button class="option-btn" onclick="nextStep(2)">
+                        <span class="option-icon">💼</span> Business & Entrepreneurship
+                    </button>
+                    <button class="option-btn" onclick="nextStep(2)">
+                        <span class="option-icon">🏠</span> Luxury Real Estate Investment
+                    </button>
+                    <button class="option-btn" onclick="nextStep(2)">
+                        <span class="option-icon">✈️</span> Premium Travel & Lifestyle
+                    </button>
+                    <button class="option-btn" onclick="nextStep(2)">
+                        <span class="option-icon">📈</span> Wealth Management Services
+                    </button>
+                    <button class="option-btn" onclick="nextStep(2)">
+                        <span class="option-icon">🎓</span> Executive Education Programs
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Step 2 -->
+            <div id="step2" class="hidden">
+                <div class="step-indicator">Step 2 of 4</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 50%;"></div>
+                </div>
+                <h1>💰 Investment Capacity Assessment</h1>
+                <p class="subtitle">
+                    To provide you with the most suitable premium options, please indicate your 
+                    investment range. All information is kept strictly confidential.
+                </p>
+                <div class="options">
+                    <button class="option-btn" onclick="nextStep(3)">
+                        <span class="option-icon">💵</span> ₹5 Lakhs - ₹15 Lakhs
+                    </button>
+                    <button class="option-btn" onclick="nextStep(3)">
+                        <span class="option-icon">💴</span> ₹15 Lakhs - ₹50 Lakhs
+                    </button>
+                    <button class="option-btn" onclick="nextStep(3)">
+                        <span class="option-icon">💶</span> ₹50 Lakhs - ₹1 Crore
+                    </button>
+                    <button class="option-btn" onclick="nextStep(3)">
+                        <span class="option-icon">💷</span> ₹1 Crore - ₹5 Crore
+                    </button>
+                    <button class="option-btn" onclick="nextStep(3)">
+                        <span class="option-icon">💎</span> Above ₹5 Crore
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Step 3 -->
+            <div id="step3" class="hidden">
+                <div class="step-indicator">Step 3 of 4</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%;"></div>
+                </div>
+                <h1>⏰ Timeline Preferences</h1>
+                <p class="subtitle">
+                    Understanding your timeline helps us create a customized roadmap for your success. 
+                    When would you like to begin your journey?
+                </p>
+                <div class="options">
+                    <button class="option-btn" onclick="nextStep(4)">
+                        <span class="option-icon">🚀</span> Immediate Start (Within 7 days)
+                    </button>
+                    <button class="option-btn" onclick="nextStep(4)">
+                        <span class="option-icon">📅</span> Within This Month
+                    </button>
+                    <button class="option-btn" onclick="nextStep(4)">
+                        <span class="option-icon">📆</span> Next Quarter (3 months)
+                    </button>
+                    <button class="option-btn" onclick="nextStep(4)">
+                        <span class="option-icon">🎯</span> Within 6 Months
+                    </button>
+                    <button class="option-btn" onclick="nextStep(4)">
+                        <span class="option-icon">⏳</span> Flexible Timeline
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Step 4 -->
+            <div id="step4" class="hidden">
+                <div class="step-indicator">Step 4 of 4</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%;"></div>
+                </div>
+                <h1>🎓 Your Background</h1>
+                <p class="subtitle">
+                    Finally, tell us about your professional background to match you with 
+                    like-minded elite members in our exclusive network.
+                </p>
+                <div class="options">
+                    <button class="option-btn" onclick="showLoading()">
+                        <span class="option-icon">👔</span> Corporate Executive / CXO Level
+                    </button>
+                    <button class="option-btn" onclick="showLoading()">
+                        <span class="option-icon">🏢</span> Business Owner / Entrepreneur
+                    </button>
+                    <button class="option-btn" onclick="showLoading()">
+                        <span class="option-icon">🎬</span> Creative Professional / Artist
+                    </button>
+                    <button class="option-btn" onclick="showLoading()">
+                        <span class="option-icon">⚖️</span> Doctor / Lawyer / Consultant
+                    </button>
+                    <button class="option-btn" onclick="showLoading()">
+                        <span class="option-icon">🌟</span> Investor / Financial Advisor
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Loading Screen -->
+            <div id="loading" class="hidden loading">
+                <div class="spinner"></div>
+                <div class="loading-text">Analyzing your profile...</div>
+                <div class="loading-text" style="margin-top: 10px; font-size: 0.9em; color: #999;">
+                    Please wait while we match you with the perfect program
+                </div>
+            </div>
+            
+            <!-- Sarcastic Result -->
+            <div id="result" class="hidden result-section">
+                <img src="https://i.imgflip.com/5uci1i.jpg" 
+                     alt="Bade Log Meme" 
+                     class="result-image"
+                     onerror="this.style.display='none'">
+                
+                <div class="sarcastic-text">बड़े लोग! 🧐</div>
+                
+                <div class="emoji-rain">😏😂🤣💸👑</div>
+                
+                <div class="subtext">
+                    Itni fancy choices ke baad yahi milna tha! 😎<br><br>
+                    <strong>Congratulations!</strong> Aap officially "Bade Log" category mein aa gaye! 🎉<br><br>
+                    Premium ka chakkar, maut se takkar! 😂<br><br>
+                    <em style="font-size: 0.9em; color: #999;">
+                        P.S. - Hope you enjoyed this journey of self-discovery! 
+                        Remember, real "bade log" laugh at themselves too! 😄
+                    </em>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function nextStep(step) {
+            // Hide all sections
+            for(let i = 1; i <= 4; i++) {
+                document.getElementById('step' + i).classList.add('hidden');
+            }
+            
+            // Show next step with animation
+            setTimeout(() => {
+                document.getElementById('step' + step).classList.remove('hidden');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 300);
+        }
+        
+        function showLoading() {
+            document.getElementById('step4').classList.add('hidden');
+            
+            setTimeout(() => {
+                document.getElementById('loading').classList.remove('hidden');
+            }, 300);
+            
+            // Show result after 3 seconds
+            setTimeout(() => {
+                document.getElementById('loading').classList.add('hidden');
+                setTimeout(() => {
+                    document.getElementById('result').classList.remove('hidden');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }, 300);
+            }, 3000);
         }
     </script>
 </body>
